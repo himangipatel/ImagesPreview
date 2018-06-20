@@ -36,6 +36,7 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
     ViewPager vPager;
     private List<String> mUriList;
     private Bitmap mBitmap;
+    private String view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,35 +99,33 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_save) {
+            view = "Save";
             Glide.with(ImagePreviewActivity.this)
                     .asBitmap()
                     .load(mUriList.get(vPager.getCurrentItem()))
                     .into(new SimpleTarget<Bitmap>() {
                         @Override
                         public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
-                            handlePermission(resource);
-                           // hideProgressDialog();
+                            handleSavePermission(resource);
+                            // hideProgressDialog();
                         }
                     });
         } else if (item.getItemId() == R.id.menu_share) {
+            view = "Share";
             Glide.with(ImagePreviewActivity.this)
                     .asBitmap()
                     .load(mUriList.get(vPager.getCurrentItem()))
                     .into(new SimpleTarget<Bitmap>() {
                         @Override
                         public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
-                            Intent intent = new Intent(Intent.ACTION_SEND);
-                            intent.setType("image/jpeg");
-                            intent.putExtra(Intent.EXTRA_STREAM, Util.shareImage(ImagePreviewActivity.this, resource));
-                            startActivity(Intent.createChooser(intent, "Share Image"));
-                            //hideProgressDialog();
+                            handleSharePermission(resource);
                         }
                     });
         }
         return true;
     }
 
-    private void handlePermission(Bitmap resource) {
+    private void handleSavePermission(Bitmap resource) {
         String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (CheckPermission.hasPermission(permission, ImagePreviewActivity.this)) {
@@ -141,13 +140,38 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
         }
     }
 
+    private void handleSharePermission(Bitmap resource) {
+        String permission = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (CheckPermission.hasPermission(permission, ImagePreviewActivity.this)) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("image/jpeg");
+                intent.putExtra(Intent.EXTRA_STREAM, Util.shareImage(ImagePreviewActivity.this, resource));
+                startActivity(Intent.createChooser(intent, "Share Image"));
+            } else {
+                mBitmap = resource;
+                CheckPermission.requestPerm(new String[]{permission},
+                        CheckPermission.PERMISSION_STORAGE, ImagePreviewActivity.this);
+            }
+        } else {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("image/jpeg");
+            intent.putExtra(Intent.EXTRA_STREAM, Util.shareImage(ImagePreviewActivity.this, resource));
+            startActivity(Intent.createChooser(intent, "Share Image"));
+        }
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == CheckPermission.PERMISSION_STORAGE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                handlePermission(mBitmap);
+                if (view.equals("Save")) {
+                    handleSavePermission(mBitmap);
+                } else {
+                    handleSharePermission(mBitmap);
+                }
             } else {
                 for (int i = 0, len = permissions.length; i < len; i++) {
                     String permission = permissions[i];
@@ -166,6 +190,7 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
             }
 
         }
+
     }
 
     private void showAlertDialog() {
