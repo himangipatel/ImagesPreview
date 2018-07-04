@@ -26,7 +26,7 @@ import com.bumptech.glide.request.transition.Transition;
 
 import java.util.List;
 
-public class ImagePreviewActivity extends AppCompatActivity implements OnItemClickListener<String> {
+public class ImagePreviewActivity extends AppCompatActivity implements OnItemClickListener<PreviewFile> {
 
 
     public static String IMAGE_LIST = "intent_image_item";
@@ -34,7 +34,7 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
 
     public Toolbar toolbar;
     ViewPager vPager;
-    private List<String> mUriList;
+    private List<PreviewFile> mUriList;
     private Bitmap mBitmap;
     private String view;
 
@@ -65,7 +65,7 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
 
     private void setUpViews() {
 
-        mUriList = (List<String>)
+        mUriList = (List<PreviewFile>)
                 getIntent().getSerializableExtra(IMAGE_LIST);
 
         SlideAdapter slideAdapter =
@@ -85,7 +85,7 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
     }
 
     @Override
-    public void onItemClick(String item) {
+    public void onItemClick(PreviewFile item) {
         toolbar.setVisibility(toolbar.getVisibility() == View.VISIBLE ?
                 View.INVISIBLE : View.VISIBLE);
     }
