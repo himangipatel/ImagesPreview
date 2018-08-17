@@ -102,7 +102,7 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
             view = "Save";
             Glide.with(ImagePreviewActivity.this)
                     .asBitmap()
-                    .load(mUriList.get(vPager.getCurrentItem()))
+                    .load(mUriList.get(vPager.getCurrentItem()).getImageURL())
                     .into(new SimpleTarget<Bitmap>() {
                         @Override
                         public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
@@ -114,7 +114,7 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
             view = "Share";
             Glide.with(ImagePreviewActivity.this)
                     .asBitmap()
-                    .load(mUriList.get(vPager.getCurrentItem()))
+                    .load(mUriList.get(vPager.getCurrentItem()).getImageURL())
                     .into(new SimpleTarget<Bitmap>() {
                         @Override
                         public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
