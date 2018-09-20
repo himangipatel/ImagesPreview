@@ -22,7 +22,7 @@ Add repository url and dependency in application module gradle file:
 	}
   
   	dependencies {
-	      compile 'com.github.himangipatel:ImagesPreview:v0.0.2'
+	      compile 'com.github.himangipatel:ImagesPreview:0.0.5'
 	}
 
 ## Usage
