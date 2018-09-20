@@ -6,11 +6,11 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class SlideAdapter extends PagerAdapter {
         assert layoutInflater != null;
         View view = layoutInflater.inflate(R.layout.item_preview, container, false);
 
-        ImageView image = view.findViewById(R.id.iv_preview);
+        PhotoView image = view.findViewById(R.id.iv_preview);
         final TextView tvImageDescription = view.findViewById(R.id.tvImageDescription);
 
         Glide.with(context)
