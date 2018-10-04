@@ -33,7 +33,7 @@ Add repository url and dependency in application module gradle file:
 	     previewFiles.add(new PreviewFile(image path,image description));
 	     
             Intent intent = new Intent(AppointmentDetailActivity.this, ImagePreviewActivity.class);
-            intent.putExtra(ImagePreviewActivity.IMAGE_LIST, pass your list of urls);
+            intent.putExtra(ImagePreviewActivity.IMAGE_LIST, previewFiles);
             intent.putExtra(ImagePreviewActivity.CURRENT_ITEM, position);
             startActivity(intent);
  ```
