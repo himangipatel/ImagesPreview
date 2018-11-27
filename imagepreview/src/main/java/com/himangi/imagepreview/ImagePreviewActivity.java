@@ -9,12 +9,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,22 +20,32 @@ import com.bumptech.glide.request.transition.Transition;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
+
 public class ImagePreviewActivity extends AppCompatActivity implements OnItemClickListener<PreviewFile> {
 
-
     public static String IMAGE_LIST = "intent_image_item";
+
     public static String CURRENT_ITEM = "current_item";
 
     public Toolbar toolbar;
-    ViewPager vPager;
+
+    ImageViewPager vPager;
+
     private List<PreviewFile> mUriList;
+
     private Bitmap mBitmap;
+
     private String view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // requestWindowFeature(Window.FEATURE_NO_TITLE);
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_preview);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -61,6 +65,8 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
             }
         });
         setUpViews();
+
+        super.onCreate(savedInstanceState);
     }
 
     private void setUpViews() {
