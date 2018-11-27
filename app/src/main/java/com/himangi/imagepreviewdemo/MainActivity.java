@@ -2,7 +2,7 @@ package com.himangi.imagepreviewdemo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.himangi.imagepreview.ImagePreviewActivity;
 import com.himangi.imagepreview.PreviewFile;
