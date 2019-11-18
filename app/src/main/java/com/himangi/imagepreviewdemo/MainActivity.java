@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(ImagePreviewActivity.IMAGE_LIST,
                 imageList);
         intent.putExtra(ImagePreviewActivity.CURRENT_ITEM, 3);
+        intent.putExtra(ImagePreviewActivity.SHOULD_CACHE,true);
+        
         startActivity(intent);
 
     }
