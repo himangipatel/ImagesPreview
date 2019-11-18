@@ -37,6 +37,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    //Asking permission for Dangerous Permissions like WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE,READ_PHONE_STATE,ACCESS_WIFI_STATE,ACCESS_FINE_LOCATION,ACCESS_COARSE_LOCATION,CAMERA
+    //Asking permission for Dangerous Permissions like WRITE_EXTERNAL_STORAGE
     implementation 'gun0912.ted:tedpermission:2.2.1'
 }
