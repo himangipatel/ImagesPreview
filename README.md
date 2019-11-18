@@ -3,6 +3,10 @@
 ### Developed by
 [Himangi Patel](https://www.github.com/himangipatel)
 
+### Customized by
+[Softpal](https://www.github.com/softpal)
+
+[![](https://jitpack.io/v/softpal/ImagesPreview.svg)](https://jitpack.io/#softpal/ImagesPreview)
 
 **Features**
 
