@@ -26,7 +26,7 @@ Add repository url and dependency in application module gradle file:
 	}
   
   	dependencies {
-	      compile 'com.github.himangipatel:ImagesPreview:0.0.5'
+	      implementation 'com.github.softpal:ImagesPreview:1.1'
 	}
 
 ## Usage
