@@ -35,6 +35,7 @@ Add repository url and dependency in application module gradle file:
             Intent intent = new Intent(AppointmentDetailActivity.this, ImagePreviewActivity.class);
             intent.putExtra(ImagePreviewActivity.IMAGE_LIST, previewFiles);
             intent.putExtra(ImagePreviewActivity.CURRENT_ITEM, position);
+            intent.putExtra(ImagePreviewActivity.SHOULD_CACHE, true);
             startActivity(intent);
  ```
  
