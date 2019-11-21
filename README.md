@@ -32,9 +32,9 @@ Add repository url and dependency in application module gradle file:
 ## Usage
 **1. Start by creating an instance of FilePickUtils and LifeCycleCallBackManager.**
 
-```java
+```javascript
             final ArrayList<PreviewFile> previewFiles = new ArrayList<>();
-	     previewFiles.add(new PreviewFile(image path,image description));
+	        previewFiles.add(new PreviewFile(image path,image description));
 	     
             Intent intent = new Intent(AppointmentDetailActivity.this, ImagePreviewActivity.class);
             intent.putExtra(ImagePreviewActivity.IMAGE_LIST, previewFiles);
