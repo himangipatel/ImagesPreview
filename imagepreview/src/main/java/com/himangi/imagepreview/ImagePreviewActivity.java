@@ -37,9 +37,9 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
 	public static String IMAGE_LIST = "intent_image_item";
 	public static String CURRENT_ITEM = "current_item";
 	public static String SHOULD_CACHE = "should_cache";
+	public static String IS_ACCEPT_CANCEL_AVAILABLE = "is_accept_cancel_available";
 	
-	
-	public Toolbar toolbar;
+	public static Toolbar toolbar;
 	ViewPager vPager;
 	PermissionListener permissionListener_save = null, permissionListener_share = null;
 	private List<PreviewFile> mUriList;
@@ -75,8 +75,9 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
 	{
 		mUriList = (List<PreviewFile>)getIntent().getSerializableExtra(IMAGE_LIST);
 		boolean shouldCache = getIntent().getBooleanExtra(SHOULD_CACHE,false);
+		boolean isAcceptCancelAvailable = getIntent().getBooleanExtra(IS_ACCEPT_CANCEL_AVAILABLE,false);
 		
-		SlideAdapter slideAdapter = new SlideAdapter(this,mUriList,this,shouldCache);
+		SlideAdapter slideAdapter = new SlideAdapter(this,mUriList,this,shouldCache,isAcceptCancelAvailable);
 		vPager.setAdapter(slideAdapter);
 		
 		vPager.setCurrentItem(getIntent().getIntExtra(CURRENT_ITEM,0));
