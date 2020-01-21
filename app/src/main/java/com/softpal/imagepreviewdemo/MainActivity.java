@@ -1,16 +1,14 @@
-package com.himangi.imagepreviewdemo;
+package com.softpal.imagepreviewdemo;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.himangi.imagepreview.ImagePreviewActivity;
-import com.himangi.imagepreview.PreviewFile;
+import com.softpal.imagepreview.ImagePreviewActivity;
+import com.softpal.imagepreview.PreviewFile;
 
 import java.util.ArrayList;
 

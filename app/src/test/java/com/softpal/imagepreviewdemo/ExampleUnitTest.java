@@ -1,4 +1,4 @@
-package com.himangi.imagepreview;
+package com.softpal.imagepreviewdemo;
 
 import org.junit.Test;
 

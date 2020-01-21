@@ -1,4 +1,4 @@
-package com.himangi.imagepreview;
+package com.softpal.imagepreview;
 
 import android.content.ContentValues;
 import android.content.Context;

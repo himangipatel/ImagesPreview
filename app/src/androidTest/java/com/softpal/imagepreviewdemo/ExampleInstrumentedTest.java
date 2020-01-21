@@ -1,4 +1,4 @@
-package com.himangi.imagepreview;
+package com.softpal.imagepreviewdemo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.himangi.imagepreview.test", appContext.getPackageName());
+        assertEquals("com.softpal.imagepreviewdemo", appContext.getPackageName());
     }
 }
