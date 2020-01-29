@@ -60,104 +60,103 @@ public class SlideAdapter extends PagerAdapter
 	@Override
 	public Object instantiateItem(@NonNull ViewGroup container,final int position)
 	{
-		
-		LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		assert layoutInflater != null;
-		View view = layoutInflater.inflate(R.layout.item_preview,container,false);
-		
-		PhotoView image = view.findViewById(R.id.iv_preview);
-		ImageView accept = view.findViewById(R.id.iv_accept_image);
-		ImageView cancel = view.findViewById(R.id.iv_reject_image);
-		final TextView tvImageDescription = view.findViewById(R.id.tvImageDescription);
-		
-		final String uriImage = list.get(position).getImageURL();
-		Bitmap bitmap;
-		
-		if(uriImage != null)
-		{
-			Uri uri = Uri.parse(uriImage);
+			LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			assert layoutInflater != null;
+			View view = layoutInflater.inflate(R.layout.item_preview,container,false);
 			
-			try
+			PhotoView image = view.findViewById(R.id.iv_preview);
+			ImageView accept = view.findViewById(R.id.iv_accept_image);
+			ImageView cancel = view.findViewById(R.id.iv_reject_image);
+			final TextView tvImageDescription = view.findViewById(R.id.tvImageDescription);
+			
+			final String uriImage = list.get(position).getImageURL();
+			Bitmap bitmap;
+			
+			if(uriImage != null)
 			{
-				bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(),uri);
-				image.setImageBitmap(bitmap);
-			}
-			catch(IOException e)
-			{
-				e.printStackTrace();
-			}
-		}
-		
-		if(shouldCache)
-		{
-			Glide.with(context).load(list.get(position).getImageURL()).into(image);
-		}
-		else
-		{
-			Glide.with(context).load(list.get(position).getImageURL()).apply(RequestOptions.skipMemoryCacheOf(true)).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE)).into(image);
-		}
-		
-		if(list.get(position).getImageDescription().isEmpty())
-		{
-			tvImageDescription.setVisibility(View.GONE);
-		}
-		else
-		{
-			tvImageDescription.setVisibility(View.VISIBLE);
-			tvImageDescription.setText(list.get(position).getImageDescription());
-		}
-		
-		image.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				listener.onItemClick(list.get(position));
-				if(! list.get(position).getImageDescription().isEmpty())
+				Uri uri = Uri.parse(uriImage);
+				
+				try
 				{
-					tvImageDescription.setVisibility(tvImageDescription.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
+					bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(),uri);
+					image.setImageBitmap(bitmap);
+				}
+				catch(IOException e)
+				{
+					e.printStackTrace();
 				}
 			}
-		});
-		
-		if(isAcceptCancelAvailable)
-		{
-			accept.setVisibility(View.VISIBLE);
-			cancel.setVisibility(View.VISIBLE);
 			
-			accept.setOnClickListener(new View.OnClickListener()
+			if(shouldCache)
+			{
+				Glide.with(context).load(list.get(position).getImageURL()).into(image);
+			}
+			else
+			{
+				Glide.with(context).load(list.get(position).getImageURL()).apply(RequestOptions.skipMemoryCacheOf(true)).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE)).into(image);
+			}
+			
+			if(list.get(position).getImageDescription().isEmpty())
+			{
+				tvImageDescription.setVisibility(View.GONE);
+			}
+			else
+			{
+				tvImageDescription.setVisibility(View.VISIBLE);
+				tvImageDescription.setText(list.get(position).getImageDescription());
+			}
+			
+			image.setOnClickListener(new View.OnClickListener()
 			{
 				@Override
 				public void onClick(View v)
 				{
-					Intent sendIntent = new Intent();
-					sendIntent.putExtra("imageOK",true);
-					sendIntent.putExtra("imageUri",uriImage);
-					((AppCompatActivity)context).setResult(Activity.RESULT_OK,sendIntent);
-					((AppCompatActivity)context).finish();
+					listener.onItemClick(list.get(position));
+					if(! list.get(position).getImageDescription().isEmpty())
+					{
+						tvImageDescription.setVisibility(tvImageDescription.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
+					}
 				}
 			});
 			
-			cancel.setOnClickListener(new View.OnClickListener()
+			if(isAcceptCancelAvailable)
 			{
-				@Override
-				public void onClick(View v)
+				accept.setVisibility(View.VISIBLE);
+				cancel.setVisibility(View.VISIBLE);
+				
+				accept.setOnClickListener(new View.OnClickListener()
 				{
-					Intent sendIntent = new Intent();
-					sendIntent.putExtra("imageOK",false);
-					((AppCompatActivity)context).setResult(Activity.RESULT_OK,sendIntent);
-					((AppCompatActivity)context).finish();
-				}
-			});
-		}
-		else
-		{
-			accept.setVisibility(View.GONE);
-			cancel.setVisibility(View.GONE);
-		}
-		
-		container.addView(view);
-		return view;
+					@Override
+					public void onClick(View v)
+					{
+						Intent sendIntent = new Intent();
+						sendIntent.putExtra("imageOK",true);
+						sendIntent.putExtra("imageUri",uriImage);
+						((AppCompatActivity)context).setResult(Activity.RESULT_OK,sendIntent);
+						((AppCompatActivity)context).finish();
+					}
+				});
+				
+				cancel.setOnClickListener(new View.OnClickListener()
+				{
+					@Override
+					public void onClick(View v)
+					{
+						Intent sendIntent = new Intent();
+						sendIntent.putExtra("imageOK",false);
+						((AppCompatActivity)context).setResult(Activity.RESULT_OK,sendIntent);
+						((AppCompatActivity)context).finish();
+					}
+				});
+			}
+			else
+			{
+				accept.setVisibility(View.GONE);
+				cancel.setVisibility(View.GONE);
+			}
+			
+			container.addView(view);
+			return view;
 	}
 	
 	@Override

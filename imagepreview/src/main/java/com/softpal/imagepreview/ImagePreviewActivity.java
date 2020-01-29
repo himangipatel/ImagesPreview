@@ -72,22 +72,24 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
 		mUriList = (List<PreviewFile>)getIntent().getSerializableExtra(IMAGE_LIST);
 		boolean shouldCache = getIntent().getBooleanExtra(SHOULD_CACHE,false);
 		boolean isAcceptCancelAvailable = getIntent().getBooleanExtra(IS_ACCEPT_CANCEL_AVAILABLE,false);
-		
-		SlideAdapter slideAdapter = new SlideAdapter(this,mUriList,this,shouldCache,isAcceptCancelAvailable);
-		vPager.setAdapter(slideAdapter);
-		
-		vPager.setCurrentItem(getIntent().getIntExtra(CURRENT_ITEM,0));
-		
-		vPager.setPageTransformer(false,new ViewPager.PageTransformer()
+		if(mUriList != null)
 		{
-			@Override
-			public void transformPage(@NonNull View page,float position)
+			SlideAdapter slideAdapter = new SlideAdapter(this,mUriList,this,shouldCache,isAcceptCancelAvailable);
+			vPager.setAdapter(slideAdapter);
+			
+			vPager.setCurrentItem(getIntent().getIntExtra(CURRENT_ITEM,0));
+			
+			vPager.setPageTransformer(false,new ViewPager.PageTransformer()
 			{
-				float normalizedPosition = Math.abs(Math.abs(position) - 1);
-				page.setScaleX(normalizedPosition / 2 + 0.5f);
-				page.setScaleY(normalizedPosition / 2 + 0.5f);
-			}
-		});
+				@Override
+				public void transformPage(@NonNull View page,float position)
+				{
+					float normalizedPosition = Math.abs(Math.abs(position) - 1);
+					page.setScaleX(normalizedPosition / 2 + 0.5f);
+					page.setScaleY(normalizedPosition / 2 + 0.5f);
+				}
+			});
+		}
 	}
 	
 	@Override
