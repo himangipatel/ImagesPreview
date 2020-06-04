@@ -3,6 +3,10 @@
 ### Developed by
 [Himangi Patel](https://www.github.com/himangipatel)
 
+### Customized by
+[Softpal](https://www.github.com/softpal)
+
+[![](https://jitpack.io/v/softpal/ImagesPreview.svg)](https://jitpack.io/#softpal/ImagesPreview)
 
 **Features**
 
@@ -22,19 +26,20 @@ Add repository url and dependency in application module gradle file:
 	}
   
   	dependencies {
-	      compile 'com.github.himangipatel:ImagesPreview:0.0.5'
+	      implementation 'com.github.softpal:ImagesPreview:1.3'
 	}
 
 ## Usage
 **1. Start by creating an instance of FilePickUtils and LifeCycleCallBackManager.**
 
-```java
+```javascript
             final ArrayList<PreviewFile> previewFiles = new ArrayList<>();
-	     previewFiles.add(new PreviewFile(image path,image description));
+	        previewFiles.add(new PreviewFile(image path,image description));
 	     
             Intent intent = new Intent(AppointmentDetailActivity.this, ImagePreviewActivity.class);
             intent.putExtra(ImagePreviewActivity.IMAGE_LIST, previewFiles);
             intent.putExtra(ImagePreviewActivity.CURRENT_ITEM, position);
+            intent.putExtra(ImagePreviewActivity.SHOULD_CACHE, true);
             startActivity(intent);
  ```
  

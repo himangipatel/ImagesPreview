@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.himangi.imagepreview">
+    package="com.softpal.imagepreview">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application>
         <activity
-            android:name=".ImagePreviewActivity"
+            android:name="com.softpal.imagepreview.ImagePreviewActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
