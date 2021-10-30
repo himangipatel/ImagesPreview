@@ -26,7 +26,8 @@ public class Util
 		File photo = new File(getAppFolder(context),SystemClock.currentThreadTimeMillis() + ".jpg");
 		try
 		{
-			
+			Log.v("Util", "saveImageToGallery photo : "+photo);
+			Log.v("Util", "saveImageToGallery photo path: "+photo.getPath());
 			FileOutputStream fos = new FileOutputStream(photo.getPath());
 			bitmap.compress(Bitmap.CompressFormat.JPEG,100,fos);
 			fos.close();
@@ -50,6 +51,7 @@ public class Util
 	
 	public static File getAppFolder(Context context)
 	{
+		Log.v("Util", "getAppFolder path : "+getWorkingDirectory().getAbsolutePath());
 		File photoDirectory = new File(getWorkingDirectory().getAbsolutePath(),getAppName(context.getApplicationContext()));
 		if(! photoDirectory.exists())
 		{
@@ -60,7 +62,7 @@ public class Util
 	
 	private static File getWorkingDirectory()
 	{
-		File directory = new File(Environment.getExternalStorageDirectory(),BuildConfig.APPLICATION_ID);
+		File directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),BuildConfig.LIBRARY_PACKAGE_NAME);
 		if(! directory.exists())
 		{
 			directory.mkdir();

@@ -33,7 +33,10 @@
         android:layout_marginBottom="30dp"
         app:srcCompat="@drawable/ic_reject_image"
         tools:ignore="VectorDrawableCompat"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:contentDescription="reject" />
 
     <ImageView
         android:id="@+id/iv_accept_image"
@@ -45,6 +48,9 @@
         android:layout_marginBottom="30dp"
         app:srcCompat="@drawable/ic_accept_image"
         tools:ignore="VectorDrawableCompat"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp"
+        android:contentDescription="accept" />
 
 </RelativeLayout>
