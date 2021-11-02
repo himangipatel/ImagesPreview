@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.Settings;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +16,8 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +29,10 @@ import com.bumptech.glide.request.transition.Transition;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 public class ImagePreviewActivity extends AppCompatActivity implements OnItemClickListener<PreviewFile>
@@ -47,6 +55,9 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_image_preview);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		
+		StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+		StrictMode.setVmPolicy(builder.build());
 		
 		toolbar = findViewById(R.id.toolbar);
 		vPager = findViewById(R.id.vPager);
@@ -160,7 +171,8 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
 			@Override
 			public void onPermissionGranted()
 			{
-				Util.saveImageToGallery(ImagePreviewActivity.this,resource);
+				//Util.saveImageToGallery(ImagePreviewActivity.this,resource);
+				Util.saveToInternalStorage(ImagePreviewActivity.this,resource);
 			}
 			
 			@Override
@@ -179,10 +191,25 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
 			@Override
 			public void onPermissionGranted()
 			{
-				Intent intent = new Intent(Intent.ACTION_SEND);
+				/*Intent share = new Intent(Intent.ACTION_SEND);
+				share.setType("image/jpeg");
+				ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+				File f = new File(Environment.getExternalStorageDirectory() + File.separator + "temporary_file.jpg");
+				try {
+					f.createNewFile();
+					FileOutputStream fo = new FileOutputStream(f);
+					fo.write(bytes.toByteArray());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				share.putExtra(Intent.EXTRA_STREAM, Util.shareImage(ImagePreviewActivity.this,resource));
+				startActivity(Intent.createChooser(share, "Share Image"));*/
+				
+				Util.shareBitmap(ImagePreviewActivity.this, resource);
+				/*Intent intent = new Intent(Intent.ACTION_SEND);
 				intent.setType("image/jpeg");
 				intent.putExtra(Intent.EXTRA_STREAM,Util.shareImage(ImagePreviewActivity.this,resource));
-				startActivity(Intent.createChooser(intent,"Share Image"));
+				startActivity(Intent.createChooser(intent,"Share Image"));*/
 			}
 			
 			@Override

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity
 		imageList.add(new PreviewFile("https://nebula.wsimg.com/12e33523b6e7341bb7045fa321cdd463?AccessKeyId=63190F15169737A11884&disposition=0&alloworigin=1",""));
 		imageList.add(new PreviewFile("http://avantgallery.com/wp-content/uploads/2016/02/Nick-Veasey-Selfie-23x29.5.jpg",""));
 		imageList.add(new PreviewFile("https://cdn.pixabay.com/photo/2016/09/30/09/52/x-ray-1704855_960_720.jpg","Main Activity"));
-		imageList.add(new PreviewFile("http://cdn.emgn.com/wp-content/uploads/2015/08/X-ray-Balarina.jpg","Image Preview screen demo"));
+		imageList.add(new PreviewFile("https://cloudsek.com/wp-content/uploads/2020/07/Android-main.jpg","Image Preview screen demo"));
 		imageList.add(new PreviewFile("https://cdn.pixabay.com/photo/2016/09/30/09/52/x-ray-1704855_960_720.jpg",""));
 		Intent intent = new Intent(MainActivity.this,ImagePreviewActivity.class);
 		intent.putExtra(ImagePreviewActivity.IMAGE_LIST,imageList);

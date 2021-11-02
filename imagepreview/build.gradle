@@ -4,10 +4,10 @@ group='com.github.softpal'
 version='v1.4'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 31
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
+        minSdkVersion 17
+        targetSdkVersion 31
         versionCode 4
         versionName "1.4"
 

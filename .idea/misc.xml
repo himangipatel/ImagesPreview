@@ -5,6 +5,7 @@
       <map>
         <entry key="imagepreview/src/main/res/layout/activity_image_preview.xml" value="0.27717391304347827" />
         <entry key="imagepreview/src/main/res/layout/item_preview.xml" value="0.3770833333333333" />
+        <entry key="imagepreview/src/main/res/menu/menu_save_share.xml" value="0.39166666666666666" />
       </map>
     </option>
   </component>

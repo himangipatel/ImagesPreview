@@ -4,7 +4,7 @@ android {
     compileSdkVersion 31
     defaultConfig {
         applicationId "com.softpal.imagepreviewdemo"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 31
         versionCode 3
         versionName "1.2"
@@ -31,5 +31,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation project(':imagepreview')
 
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
 }

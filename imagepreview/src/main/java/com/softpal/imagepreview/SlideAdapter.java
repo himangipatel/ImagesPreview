@@ -41,8 +41,6 @@ public class SlideAdapter extends PagerAdapter
 		this.listener = listener;
 		this.shouldCache = shouldCache;
 		this.isAcceptCancelAvailable = isAccpetRejectAvailable;
-		
-		Log.v(TAG,"isAccpetRejectAvailable=="+isAccpetRejectAvailable);
 	}
 	
 	@Override
@@ -78,6 +76,7 @@ public class SlideAdapter extends PagerAdapter
 				
 				try
 				{
+					Log.v("SlideAdapter", "instantiateItem uri : "+uri);
 					bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(),uri);
 					image.setImageBitmap(bitmap);
 				}
