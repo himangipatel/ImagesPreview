@@ -56,8 +56,8 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
 		setContentView(R.layout.activity_image_preview);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
-		StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-		StrictMode.setVmPolicy(builder.build());
+		/*StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+		StrictMode.setVmPolicy(builder.build());*/
 		
 		toolbar = findViewById(R.id.toolbar);
 		vPager = findViewById(R.id.vPager);
@@ -134,7 +134,6 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
 				public void onResourceReady(Bitmap resource,Transition<? super Bitmap> transition)
 				{
 					handleSavePermission(resource);
-					// hideProgressDialog();
 				}
 				
 				@Override
@@ -171,7 +170,6 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
 			@Override
 			public void onPermissionGranted()
 			{
-				//Util.saveImageToGallery(ImagePreviewActivity.this,resource);
 				Util.saveToInternalStorage(ImagePreviewActivity.this,resource);
 			}
 			
@@ -191,25 +189,7 @@ public class ImagePreviewActivity extends AppCompatActivity implements OnItemCli
 			@Override
 			public void onPermissionGranted()
 			{
-				/*Intent share = new Intent(Intent.ACTION_SEND);
-				share.setType("image/jpeg");
-				ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-				File f = new File(Environment.getExternalStorageDirectory() + File.separator + "temporary_file.jpg");
-				try {
-					f.createNewFile();
-					FileOutputStream fo = new FileOutputStream(f);
-					fo.write(bytes.toByteArray());
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				share.putExtra(Intent.EXTRA_STREAM, Util.shareImage(ImagePreviewActivity.this,resource));
-				startActivity(Intent.createChooser(share, "Share Image"));*/
-				
 				Util.shareBitmap(ImagePreviewActivity.this, resource);
-				/*Intent intent = new Intent(Intent.ACTION_SEND);
-				intent.setType("image/jpeg");
-				intent.putExtra(Intent.EXTRA_STREAM,Util.shareImage(ImagePreviewActivity.this,resource));
-				startActivity(Intent.createChooser(intent,"Share Image"));*/
 			}
 			
 			@Override

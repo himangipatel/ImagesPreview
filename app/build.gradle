@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.softpal.imagepreviewdemo"
         minSdkVersion 17
-        targetSdkVersion 31
+        targetSdkVersion 29
         versionCode 3
         versionName "1.2"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'

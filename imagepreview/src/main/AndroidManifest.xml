@@ -3,14 +3,27 @@
     package="com.softpal.imagepreview">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
+        android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
         >
         <activity
             android:name="com.softpal.imagepreview.ImagePreviewActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.softpal.imagepreview.myfileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>
+
     </application>
 
 </manifest>
