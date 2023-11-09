@@ -1,4 +1,4 @@
-package com.himangi.imagepreview;
+package com.softpal.imagepreview;
 
 import java.io.Serializable;
 
